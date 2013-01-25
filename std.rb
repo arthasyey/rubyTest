@@ -3,6 +3,10 @@ def std(array)
     sumSqures = 0.0
     if array.respond_to?("each")
         array.each do |elem|
+            if !elem.is_a? Numeric
+              puts "Element #{elem} is not a number, abort"
+              return 0.0 / 0.0
+            end
             sum += elem
             sumSqures += elem * elem
         end
@@ -13,8 +17,8 @@ def std(array)
         end
         return Math.sqrt(variance / array.length)
     else
-        puts "Input #{@array} is not an array, abort"
-        return -1
+        puts "Input #{array} is not an array, abort"
+        return 0.0 / 0.0
     end
 end
 
@@ -29,6 +33,6 @@ if __FILE__ == $0
     array = 1
     puts std(array)
     
-    array = ["a", "b", "c"]
+    array = [1, "b", "c"]
     puts std(array)
 end
