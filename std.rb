@@ -1,7 +1,12 @@
 def std(array)
     sum = 0.0
     sumSqures = 0.0
+
     if array.respond_to?("each")
+        if array.length == 0
+            puts "Input is empty array"
+            return 0.0
+        end
         array.each do |elem|
             if !elem.is_a? Numeric
               puts "Element #{elem} is not a number, abort"
@@ -24,6 +29,12 @@ end
 
 
 if __FILE__ == $0
+    array = nil
+    puts std(nil)
+
+    array = []
+    puts std(array)
+
     array = [1, 1, 1]
     puts std(array)
 
@@ -35,4 +46,5 @@ if __FILE__ == $0
     
     array = [1, "b", "c"]
     puts std(array)
+
 end
