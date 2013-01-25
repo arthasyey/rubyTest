@@ -1,10 +1,12 @@
 def numberToCurrency(num)
   if !num.is_a? Integer
     puts "Input #{num} is not a integer, return"
-    return
+    return ''
   end
 
-  def roundQuotential(quot)
+  def roundQuotential(num, power)
+    num = num + 0.0
+    quot = num / (10 ** power)
     if(quot > 10)
       return quot.round(0)
     else
@@ -22,7 +24,6 @@ def numberToCurrency(num)
       
 
   isNegative = false
-  num = num + 0.0
   if(num < 0)
     isNegative = true
     num = -num
@@ -30,23 +31,23 @@ def numberToCurrency(num)
 
   if num > 10 ** 15
     puts "input out of range, only support integers up to 100's of T's"
-    return false
+    return "" 
   end
 
   if num > 10 ** 12
-    quot = roundQuotential(num / 10 ** 12)
+    quot = roundQuotential(num, 12)
     return outputValue(isNegative, quot, 'T')
   else 
     if num > 10 ** 9
-        quot = roundQuotential(num / 10 ** 9)
+        quot = roundQuotential(num, 9)
         return outputValue(isNegative, quot, 'B')
     else 
       if num > 10 ** 6 
-          quot = roundQuotential(num / 10 ** 6)
+          quot = roundQuotential(num, 6)
           return outputValue(isNegative, quot, 'M')
       else 
         if num > 10 ** 3 
-            quot = roundQuotential(num / 10 ** 3)
+            quot = roundQuotential(num, 3)
             return outputValue(isNegative, quot, 'K')
         else
             return outputValue(isNegative, num, '')
